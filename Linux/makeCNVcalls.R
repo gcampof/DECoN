@@ -66,7 +66,12 @@ ExomeCount<-as(counts, 'data.frame')											#converts counts, a ranged data o
 
 ExomeCount$chromosome <- gsub(as.character(ExomeCount$chromosome),pattern = 'chr',replacement = '') 
 																				#remove any chr letters, and coerce to a string.
-colnames(ExomeCount)[1:length(sample.names)+4]=sample.names						#assigns the sample names to each column 
+
+if(names(ExomeCount)[5]=="GC"){ 
+	colnames(ExomeCount)[1:length(sample.names)+5]=sample.names						#assigns the sample names to each column 
+} else { 
+	colnames(ExomeCount)[1:length(sample.names)+4]=sample.names
+}
 
 cnv.calls = NULL
 refs<-list()
